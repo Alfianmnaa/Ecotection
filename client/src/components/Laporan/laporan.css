@@ -1,0 +1,31 @@
+& .slick-list {
+  margin: 0 -7px;
+  & .slick-slide > div {
+    padding: 0 10px;
+  }
+}
+.slides .slick-prev,
+.slides .slick-next {
+  background-color: rgb(200, 195, 195);
+  border: 1px solid #bdbdbd;
+  border-radius: 50%;
+}
+
+.slides {
+  position: relative;
+}
+
+.slides .slick-prev,
+.slides .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+}
+
+.slides .slick-prev {
+  left: -2%;
+}
+
+.slides .slick-next {
+  right: -2%;
+}

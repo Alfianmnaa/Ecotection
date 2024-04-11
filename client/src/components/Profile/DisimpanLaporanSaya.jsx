@@ -1,0 +1,83 @@
+import React, { useEffect, useState } from "react";
+import CardLaporanSaya from "./CardLaporanSaya";
+import { axiosInstance } from "../../config";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+
+const DisimpanLaporanSaya = () => {
+  const [semuaData, setSemuaData] = useState([]);
+  const [urutkan, setUrutkan] = useState("Terbaru"); // Memberikan nilai awal
+
+  const { user } = useContext(UserContext);
+  useEffect(() => {
+    fetchLaporan();
+  }, [urutkan]); // Menambahkan urutkan sebagai dependensi
+
+  const fetchLaporan = async () => {
+    try {
+      const res = await axiosInstance.get("/aksi/laporan/kategori");
+      let sortedData = [...res.data]; // Membuat salinan array untuk menghindari mutasi langsung
+      if (urutkan === "Terbaru") {
+        sortedData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      }
+
+      setSemuaData(sortedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <section className="xl:px-36 lg:px-32 md:px-32 sm:px-10 px-4">
+      <h1>Disimpan</h1>
+      <div className="flex flex-wrap justify-between">
+        <div className="my-2 flex gap-8">
+          <div>
+            <label htmlFor="filter" className="font-bold md:text-normal text-smallText">
+              Filter:
+            </label>
+            <select name="filter" id="filter" className="lg:ml-2 focus:outline-none border-[1px] border-inputBorder rounded-md py-1 lg:px-4 px-2">
+              <option value="Semua">Semua</option>
+              <option value="Diverifikasi">Diverifikasi</option>
+              <option value="Diproses">Diproses</option>
+              <option value="Selesai">Selesai</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="urutkan" className="font-bold md:text-normal text-smallText">
+              Urutkan:
+            </label>
+            <select name="urutkan" id="urutkan" className="lg:ml-2 focus:outline-none border-[1px] border-inputBorder rounded-md py-1 lg:px-4 px-2" onChange={(e) => setUrutkan(e.target.value)}>
+              <option value="Terbaru">Terbaru</option>
+              <option value="Terlama">Terlama</option>
+            </select>
+          </div>
+        </div>
+        <div className="flex lg:gap-10 gap-6 lg:mt-0 mt-4">
+          <div className="text-center">
+            <p className="md:text-body text-normal font-semibold">Diverifikasi</p>
+            <p className="font-bold text-[#0084FF] lg:text-4xl sm:text-3xl text-2xl">2</p>
+          </div>
+          <div className="text-center">
+            <p className="md:text-body text-normal font-semibold">Diproses</p>
+            <p className="font-bold text-[#C9AE17] lg:text-4xl sm:text-3xl text-2xl">2</p>
+          </div>
+          <div className="text-center">
+            <p className="md:text-body text-normal font-semibold">Selesai</p>
+            <p className="font-bold text-[#53A88C] lg:text-4xl sm:text-3xl text-2xl">2</p>
+          </div>
+        </div>
+      </div>
+      <div className="cardContainer flex flex-wrap justify-start gap-8 mt-6 mb-20 ">
+        {semuaData
+          .filter((laporan) => laporan.Disimpan.includes(user._id))
+          .map((item, index) => {
+            return <CardLaporanSaya itemData={item} fetchAgain={fetchLaporan} key={index} />;
+          })}
+        {semuaData.filter((laporan) => laporan.Disimpan.includes(user._id)).length === 0 && <p>Tidak ada postingan yang disimpan.</p>}
+      </div>
+    </section>
+  );
+};
+
+export default DisimpanLaporanSaya;
