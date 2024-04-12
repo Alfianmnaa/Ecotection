@@ -110,7 +110,7 @@ const CardSearch = ({ provinsiDipilih, pencarian }) => {
   };
   return (
     <section>
-      <div className="cardContainer flex flex-wrap justify-start gap-8 mt-4">
+      <div className="cardContainer flex flex-wrap justify-center gap-8 mt-4">
         {semuaData.length > 0 ? (
           semuaData.map((laporan, index) => {
             const isUpvoted = user ? laporan.UpVote.includes(user._id) : false;

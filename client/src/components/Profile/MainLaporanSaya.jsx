@@ -111,7 +111,7 @@ const MainLaporanSaya = () => {
           </div>
         </div>
       </div>
-      <div className="cardContainer flex flex-wrap justify-start gap-8 mt-6 mb-20">
+      <div className="cardContainer flex flex-wrap justify-center gap-8 mt-6 mb-20">
         {dataUser.isAdmin === true
           ? semuaData
               .filter((laporan) => laporan.Provinsi === dataUser.username) // Additional filtering
