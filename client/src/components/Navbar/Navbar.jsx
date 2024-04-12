@@ -193,7 +193,7 @@ export const Navbar = () => {
           {/* Close icon or back button could be placed here */}
           <img src={close} alt="close" className="text-gray-400 mt-10 mr-3 w-4 h-4 absolute right-3" onClick={() => setShowMobileNav(false)} />
           <div className="overflow-hidden nav-kiri mt-20 sm:text-body text-normal flex flex-col items-center ">
-            {user && (
+            {!user && (
               <div className="bg-[#E2FFF5] w-full py-6 mb-4">
                 <div className="flex flex-col justify-center items-center gap-3 ">
                   <Link to="/masuk" className="ml-4">
