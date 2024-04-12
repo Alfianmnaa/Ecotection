@@ -193,20 +193,22 @@ export const Navbar = () => {
           {/* Close icon or back button could be placed here */}
           <img src={close} alt="close" className="text-gray-400 mt-10 mr-3 w-4 h-4 absolute right-3" onClick={() => setShowMobileNav(false)} />
           <div className="overflow-hidden nav-kiri mt-20 sm:text-body text-normal flex flex-col items-center ">
-            <div className="bg-[#E2FFF5] w-full py-6 mb-4">
-              <div className="flex flex-col justify-center items-center gap-3 ">
-                <Link to="/masuk" className="ml-4">
-                  <div className="hover:brightness-90 duration-150 max-w-[95px] max-h-[51px] md:px-6 md:py-4 px-5 py-3 rounded-[30px] border border-black text-black justify-center items-center gap-2.5 inline-flex">
-                    <div className="text-base font-semibold ">Masuk</div>
-                  </div>
-                </Link>
-                <Link to="/daftar" className="ml-4">
-                  <div className="hover:brightness-90 hover:border duration-150 max-w-[95px] max-h-[51px] md:px-6 md:py-4 px-5 py-3 bg-greenMain text-white rounded-[30px] justify-center items-center gap-2.5 inline-flex">
-                    <div className="text-base font-semibold  ">Daftar</div>
-                  </div>
-                </Link>
+            {user && (
+              <div className="bg-[#E2FFF5] w-full py-6 mb-4">
+                <div className="flex flex-col justify-center items-center gap-3 ">
+                  <Link to="/masuk" className="ml-4">
+                    <div className="hover:brightness-90 duration-150 max-w-[95px] max-h-[51px] md:px-6 md:py-4 px-5 py-3 rounded-[30px] border border-black text-black justify-center items-center gap-2.5 inline-flex">
+                      <div className="text-base font-semibold ">Masuk</div>
+                    </div>
+                  </Link>
+                  <Link to="/daftar" className="ml-4">
+                    <div className="hover:brightness-90 hover:border duration-150 max-w-[95px] max-h-[51px] md:px-6 md:py-4 px-5 py-3 bg-greenMain text-white rounded-[30px] justify-center items-center gap-2.5 inline-flex">
+                      <div className="text-base font-semibold  ">Daftar</div>
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
             {navLinks.map((link, index) => (
               <Link key={index} to={link.to} className="text-black mb-4 duration-100 hover:brightness-90" onClick={() => setShowMobileNav(false)}>
                 {link.text}
