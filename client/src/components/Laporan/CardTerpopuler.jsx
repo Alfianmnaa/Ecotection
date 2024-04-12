@@ -8,11 +8,13 @@ import shareIcon from "../../assets/Laporan/share.svg";
 import arrowUpIcon from "../../assets/Laporan/arrow_circle_up.svg";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import "./CardSkeleton.css";
 
 const CardTerpopuler = () => {
   const { user } = useContext(UserContext);
   const [semuaData, setSemuaData] = useState([]);
   const [dataUser, setDataUser] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchLaporan();
@@ -20,11 +22,13 @@ const CardTerpopuler = () => {
 
   const fetchLaporan = async () => {
     try {
+      setLoading(true);
       const res = await axiosInstance.get("/aksi/laporan/kategori");
       // Mengurutkan data berdasarkan jumlah UpVote dari yang tertinggi ke terendah
       const sortedData = res.data.sort((a, b) => b.UpVote.length - a.UpVote.length);
       // Mengambil 9 laporan pertama dari data yang telah diurutkan
       const slicedData = sortedData.slice(0, 9);
+      setLoading(false);
       setSemuaData(slicedData);
       // Mengambil data user untuk setiap laporan
       slicedData.forEach((laporan) => {
@@ -115,55 +119,63 @@ const CardTerpopuler = () => {
 
   return (
     <section>
-      <div className="cardContainer flex flex-wrap justify-center gap-8 mt-6">
-        {semuaData.length > 0 ? (
-          semuaData.map((laporan, index) => {
-            const isUpvoted = user ? laporan.UpVote.includes(user._id) : false;
-            const isSaved = user ? laporan.Disimpan?.includes(user._id) : false;
-            const userData = dataUser.find((user) => user._id === laporan.PemilikID);
+      {loading ? (
+        <div className="skeleton-wrapper cardContainer mt-6 flex flex-wrap justify-center gap-8">
+          {[1, 2, 3].map((index) => (
+            <div className="shimmer cardKu border-[1px] border-inputBorder 2xl:w-[380px] 2xl:h-[490px] w-[300px] h-[390px] rounded-2xl" key={index}></div>
+          ))}
+        </div>
+      ) : (
+        <div className="cardContainer flex flex-wrap justify-center gap-8 mt-6">
+          {semuaData.length > 0 ? (
+            semuaData.map((laporan, index) => {
+              const isUpvoted = user ? laporan.UpVote.includes(user._id) : false;
+              const isSaved = user ? laporan.Disimpan?.includes(user._id) : false;
+              const userData = dataUser.find((user) => user._id === laporan.PemilikID);
 
-            return (
-              <div className="cardKu border-[1px] border-inputBorder 2xl:max-w-[380px] max-w-[300px] rounded-2xl" key={index}>
-                <div className="p-4">
-                  <div className="flex items-center gap-2 h-[80px]">
-                    <img src={userData?.fotoPengguna || profImg} alt="profpic" className="w-10 h-10 rounded-full object-cover" />
-                    <div>
-                      <p className="lg:text-smallText text-[12px]">
-                        {laporan.JenisLaporan == "Public" ? <b>{laporan.Pemilik}</b> : <b>Anonymous</b>}
-                        <span className="text-[#8A8A8A]"> · {new Date(laporan.createdAt).toLocaleDateString("id-ID", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</span>
-                      </p>
-                      <p className="lg:text-smallText text-[12px] text-[#5B5B5B] font-medium">
-                        {laporan.Kabupaten}, {laporan.Provinsi} · {laporan.JenisKerusakan}
-                      </p>
+              return (
+                <div className="cardKu border-[1px] border-inputBorder 2xl:max-w-[380px] max-w-[300px] rounded-2xl" key={index}>
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 h-[80px]">
+                      <img src={userData?.fotoPengguna || profImg} alt="profpic" className="w-10 h-10 rounded-full object-cover" />
+                      <div>
+                        <p className="lg:text-smallText text-[12px]">
+                          {laporan.JenisLaporan == "Public" ? <b>{laporan.Pemilik}</b> : <b>Anonymous</b>}
+                          <span className="text-[#8A8A8A]"> · {new Date(laporan.createdAt).toLocaleDateString("id-ID", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</span>
+                        </p>
+                        <p className="lg:text-smallText text-[12px] text-[#5B5B5B] font-medium">
+                          {laporan.Kabupaten}, {laporan.Provinsi} · {laporan.JenisKerusakan}
+                        </p>
+                      </div>
+                      <img src={titikTiga} alt="titikTiga" />
                     </div>
-                    <img src={titikTiga} alt="titikTiga" />
-                  </div>
-                  <Link to={`/laporan/${laporan._id}`}>
-                    <p className="lg:text-smallText text-[12px] text-[#222] font-medium overflow-hidden 2xl:line-clamp-4 md:line-clamp-3 line-clamp-2 my-2">{laporan.DeskripsiLaporan}</p>
-                    <img src={laporan.BuktiLaporan} alt="buktiFoto" className="2xl:h-[260px] h-[180px] w-full object-cover rounded-2xl" />
-                  </Link>
+                    <Link to={`/laporan/${laporan._id}`}>
+                      <p className="lg:text-smallText text-[12px] text-[#222] font-medium overflow-hidden 2xl:line-clamp-4 md:line-clamp-3 line-clamp-2 my-2">{laporan.DeskripsiLaporan}</p>
+                      <img src={laporan.BuktiLaporan} alt="buktiFoto" className="2xl:h-[260px] h-[180px] w-full object-cover rounded-2xl" />
+                    </Link>
 
-                  <div className="flex items-center justify-between mt-4">
-                    <div
-                      className={`flex gap-2 justify-center items-center px-2 py-2 border-[1px] border-[#D7D9DA] rounded-2xl font-semibold cursor-pointer ${isUpvoted ? "bg-[#E2FFF5]" : "bg-[#F1F1F1]"}`}
-                      onClick={() => (isUpvoted ? handleDownvote(laporan._id) : handleUpvote(laporan._id))}
-                    >
-                      <img src={arrowUpIcon} alt="arrowUp" className="w-5" />
-                      <span className="text-[#636466] text-[12px]">Upvote · {laporan.UpVote.length}</span>
-                    </div>
-                    <div className="cursor-pointer flex gap-4 items-center text-body ">
-                      <img src={shareIcon} alt="shareicon" onClick={() => handleShare(laporan._id)} className="text-[#5B5B5B]" />
-                      {isSaved ? <img src={bookMarkFill} alt="bookmarkfillicon" onClick={() => handleUnsave(laporan._id)} /> : <img src={bookMarkIcon} alt="bookmarkicon" onClick={() => handleSimpan(laporan._id)} />}
+                    <div className="flex items-center justify-between mt-4">
+                      <div
+                        className={`flex gap-2 justify-center items-center px-2 py-2 border-[1px] border-[#D7D9DA] rounded-2xl font-semibold cursor-pointer ${isUpvoted ? "bg-[#E2FFF5]" : "bg-[#F1F1F1]"}`}
+                        onClick={() => (isUpvoted ? handleDownvote(laporan._id) : handleUpvote(laporan._id))}
+                      >
+                        <img src={arrowUpIcon} alt="arrowUp" className="w-5" />
+                        <span className="text-[#636466] text-[12px]">Upvote · {laporan.UpVote.length}</span>
+                      </div>
+                      <div className="cursor-pointer flex gap-4 items-center text-body ">
+                        <img src={shareIcon} alt="shareicon" onClick={() => handleShare(laporan._id)} className="text-[#5B5B5B]" />
+                        {isSaved ? <img src={bookMarkFill} alt="bookmarkfillicon" onClick={() => handleUnsave(laporan._id)} /> : <img src={bookMarkIcon} alt="bookmarkicon" onClick={() => handleSimpan(laporan._id)} />}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <p className="text-center">Tidak ada laporan dengan kategori ini.</p>
-        )}
-      </div>
+              );
+            })
+          ) : (
+            <p className="text-center">Tidak ada laporan dengan kategori ini.</p>
+          )}
+        </div>
+      )}
     </section>
   );
 };

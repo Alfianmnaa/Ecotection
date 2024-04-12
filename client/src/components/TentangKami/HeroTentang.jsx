@@ -16,8 +16,8 @@ const HeroTentang = () => {
               <span className="text-yellowMain">Ecotection</span> untuk pelestarian alam Indonesia
             </h2>
             <p className=" text-white 2xl:text-body lg:text-[18px] sm:text-normal text-smallText max-w-[690px] my-2">
-              Ecotection didirikan pada tahun 2024 oleh sekelompok individu yang peduli dengan alam Indonesia. Motivasi tersebut muncul dari keprihatinan terhadap tingginya tingkat kerusakan lingkungan serta keinginan untuk mengupayakan
-              perbaikan demi masa depan yang lebih baik. Kami percaya bahwa melalui pemanfaatan teknologi dan keterlibatan aktif komunitas dapat memberikan kontribusi yang signifikan dalam menjaga kelestarian alam.
+              Ecotection merupakan sebuah platform yang didirikan dengan tujuan untuk merawat dan menjaga lingkungan alam Indonesia melalui penggunaan teknologi serta partisipasi aktif dari berbagai komunitas. Sebagai inisiatif utama dalam
+              melestarikan alam Indonesia, Ecotection berperan sebagai jembatan antara masyarakat dengan instansi yang bertanggung jawab dalam menjaga kelestarian lingkungan.
             </p>
           </div>
         </div>

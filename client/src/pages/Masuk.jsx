@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import mataBuka from "../assets/Login/mataBuka.svg";
+import mataTutup from "../assets/Login/mataTutup.svg";
 import { MdLogin } from "react-icons/md";
 import { Navbar2 } from "../components/Navbar/Navbar2";
 import { UserContext } from "../context/UserContext";
@@ -9,6 +11,7 @@ const Masuk = () => {
   const [error, setError] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isClosed, setIsClosed] = useState(true);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -23,6 +26,10 @@ const Masuk = () => {
       setError(true);
       console.log(error);
     }
+  };
+
+  const toggleEye = () => {
+    setIsClosed(!isClosed);
   };
   return (
     <>
@@ -43,11 +50,21 @@ const Masuk = () => {
                 </label>
                 <input required type="text" id="username" placeholder="Contoh: JohnDoe" className="border mt-2 rounded-md border-[#222] w-full py-3 px-4 text-tprimary outline-none" onChange={(e) => setUsername(e.target.value)} />
               </div>
-              <div className="input2 flex flex-col mb-6">
+              <div className="input2 flex flex-col mb-6 relative">
                 <label htmlFor="password" className="text-neutral-800 text-xl font-bold leading-normal">
                   Password:
                 </label>
-                <input required type="password" id="password" placeholder="your password!" className="border mt-2 rounded-md border-[#222] w-full py-3 px-4 text-tprimary outline-none" onChange={(e) => setPassword(e.target.value)} />
+                <input
+                  required
+                  type={isClosed ? "password" : "text"}
+                  id="password"
+                  placeholder="your password!"
+                  className="border mt-2 rounded-md border-[#222] w-full py-3 px-4 text-tprimary outline-none"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div className="eye-icon absolute top-4 right-0 h-full flex items-center pr-4" onClick={toggleEye}>
+                  {isClosed ? <img src={mataTutup} alt="mataTutup" className="w-5 " /> : <img src={mataBuka} alt="mataTerbuka" className="w-5 " />}
+                </div>
               </div>
               <button type="submit" className="button-login w-full py-3 mt-2 text-white bg-greenSecondary text-xl font-bold rounded-md border-none transition duration-200 cursor-pointer hover:brightness-90">
                 Login

@@ -30,9 +30,9 @@ const HeroEdit = () => {
   return (
     <section>
       <div className="w-full 2xl:h-[460px] md:h-[340px] h-[300px] bg-no-repeat bg-top bg-cover" style={{ backgroundImage: `url(${heroLaporanMasyarakat})` }}>
-        <div className="text-white lg:translate-y-32 translate-y-20 text-center">
+        <div className="text-white lg:translate-y-32 translate-y-28 text-center">
           <h4 className="font-black sm:mr-[60px] ml-0 opacity-90 lg:text-4xl md:text-3xl text-2xl text-[#FCDC2A]">SELAMAT DATANG</h4>
-          <h4 className="font-black sm:mr-[60px] ml-0 opacity-90 lg:text-4xl md:text-3xl text-2xl text-[#FCDC2A] mb-4">SAHABAT BUMI</h4>
+          <h4 className="font-black sm:mr-[60px] ml-0 opacity-90 lg:text-4xl md:text-3xl text-2xl text-[#FCDC2A] mb-4">{dataUser.isAdmin == true ? "PENYELAMAT" : "SAHABAT"} BUMI</h4>
           <span className="sm:mr-[60px] ml-0 text-verySmallText font-light px-3 py-2 border-[1px] border-inputBorder rounded-md">ECOTECTION.</span>
         </div>
       </div>
@@ -53,10 +53,6 @@ const HeroEdit = () => {
             <div className={styleMenuProfil} onClick={() => setHandleMenu("")}>
               <img src={editIcon} alt="newsIcon" className="md:w-6 w-5 mr-2" />
               <p>Edit Profil</p>
-            </div>
-            <div className={styleMenuPassword} onClick={() => setHandleMenu("Ubah Password")}>
-              <img src={keyIcon} alt="newsIcon" className="md:w-6 w-5 mr-2" />
-              <p>Ubah Password</p>
             </div>
           </div>
         </div>

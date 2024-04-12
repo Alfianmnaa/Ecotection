@@ -77,7 +77,7 @@ export const Navbar = () => {
   const buttonMasuk = `hover:brightness-90 duration-150 w-[95px] h-[51px] px-6 py-4 rounded-[30px] border ${scrolling ? "border-black text-black" : "border-white text-white"} justify-center items-center gap-2.5 inline-flex`;
 
   const buttonDaftar = `hover:brightness-90 hover:border duration-150 w-[95px] h-[51px] px-6 py-4 ${scrolling ? "bg-greenMain text-white" : "bg-white text-black"}  rounded-[30px] justify-center items-center gap-2.5 inline-flex`;
-  const settingProfile = `${scrolling ? "text-black" : "text-white"} xl:text-xl text-normal font-semibold sm:block hidden`;
+  const settingProfile = `${scrolling ? "text-black" : "text-white"} 2xl:text-xl text-smallText font-semibold sm:block hidden`;
   // Fungsi untuk memeriksa apakah link sesuai dengan path URL saat ini
   const isLinkActive = (path) => (path === "/" ? location.pathname === path : location.pathname.startsWith(path));
 
@@ -92,7 +92,7 @@ export const Navbar = () => {
   };
   return (
     <header className={navbarClasses}>
-      <nav className=" 2xl:py-6 py-3 px-2 h-full flex justify-between items-center">
+      <nav className=" 2xl:py-6 md:py-3 py-1 px-2 h-full flex justify-between items-center">
         <div className="logo  ml-5 flex items-center py-3  ">
           <Link to="/" className="w-40 sm:w-64 flex justify-center items-center gap-3">
             <img src={scrolling ? logo : logowhite} className="w-10  object-cover" alt="logo" />
@@ -191,7 +191,7 @@ export const Navbar = () => {
         {/* Mobile Nav */}
         <div className={`bg-white shadow-sm pb-8 fixed top-0 inset-x-0 h-full z-50 transform ${showMobileNav ? "translate-x-0" : "-translate-x-[109%]"} transition-transform duration-300 ease-in-out min-[920px]:hidden`}>
           {/* Close icon or back button could be placed here */}
-          <img src={close} alt="close" className="text-gray-400 mt-5 w-4 h-4 absolute right-3" onClick={() => setShowMobileNav(false)} />
+          <img src={close} alt="close" className="text-gray-400 mt-10 mr-3 w-4 h-4 absolute right-3" onClick={() => setShowMobileNav(false)} />
           <div className="overflow-hidden nav-kiri mt-20 sm:text-body text-normal flex flex-col items-center ">
             <div className="bg-[#E2FFF5] w-full py-6 mb-4">
               <div className="flex flex-col justify-center items-center gap-3 ">

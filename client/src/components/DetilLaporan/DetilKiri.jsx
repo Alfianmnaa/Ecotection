@@ -274,20 +274,20 @@ const DetilKiri = () => {
             </div>
             {data?.StatusSekarang == "Diverifikasi" && (
               <div className="flex gap-4">
-                <span className="border-[1px] border-[#0084FF]  rounded-[40px] py-2 px-4 text-smallText text-[#0084FF] bg-[#E5F2FF] font-medium">Diverifikasi</span>
+                <span className="border-[1px] border-[#0084FF]  rounded-[40px] sm:py-2 sm:px-4 py-1 px-3 sm:text-smallText text-verySmallText text-[#0084FF] bg-[#E5F2FF] font-medium">Diverifikasi</span>
                 <img src={titikTiga} alt="titikTiga" />
               </div>
             )}
 
             {data?.StatusSekarang == "Diproses" && (
               <div className="flex gap-4">
-                <span className="border-[1px] border-[#C9AE17]  rounded-[40px] py-2 px-4 text-smallText text-[#C9AE17] bg-[#FFF8D1] font-medium">Diproses</span>
+                <span className="border-[1px] border-[#C9AE17]  rounded-[40px] sm:py-2 sm:px-4 py-1 px-3 sm:text-smallText text-verySmallText text-[#C9AE17] bg-[#FFF8D1] font-medium">Diproses</span>
                 <img src={titikTiga} alt="titikTiga" />
               </div>
             )}
             {data?.StatusSekarang == "Selesai" && (
               <div className="flex gap-4">
-                <span className="border-[1px] border-[#53A88C]  rounded-[40px] py-2 px-4 text-smallText text-[#53A88C] bg-[#E2FFF5] font-medium">Selesai</span>
+                <span className="border-[1px] border-[#53A88C]  rounded-[40px] sm:py-2 sm:px-4 py-1 px-3 sm:text-smallText text-verySmallText text-[#53A88C] bg-[#E2FFF5] font-medium">Selesai</span>
                 <img src={titikTiga} alt="titikTiga" />
               </div>
             )}

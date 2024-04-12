@@ -15,6 +15,7 @@ const FormLaporkan = () => {
   const [selectedData, setSelectedData] = useState({});
   const [deskripsi, setDeskripsi] = useState("");
   const [alamatDetail, setAlamatDetail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [dataUser, setDataUser] = useState([]);
 
   useEffect(() => {
@@ -60,6 +61,7 @@ const FormLaporkan = () => {
       return;
     }
     try {
+      setLoading(true);
       const url = await upload(file);
       const newLaporan = {
         Pemilik: user.username,
@@ -73,12 +75,14 @@ const FormLaporkan = () => {
       await axiosInstance.put(`/user/update/${user?._id}`, {
         jumlahLaporan: dataUser.jumlahLaporan + 1,
       });
+      setLoading(false);
       Swal.fire("Terimakasih Sahabat Bumi!", "Laporan anda sangat bermanfaat untuk Indonesia", "success").then(() => {
         // Setelah SweetAlert ditampilkan, kosongkan data
         window.location.reload();
       });
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -135,7 +139,7 @@ const FormLaporkan = () => {
             </div>
             <div className="flex justify-end mt-8">
               <button type="submit" className="flex gap-2 justify-center items-center py-3 px-5 bg-greenMain text-white rounded-[40px] text-normal font-semibold hover:brightness-150 duration-100">
-                <span>Kirim Laporan</span>
+                <span>{loading ? "Mengirim" : "Kirim Laporan"}</span>
                 <img src={send} alt="send" className="w-6" />
               </button>
             </div>

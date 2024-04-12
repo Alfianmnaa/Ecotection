@@ -11,7 +11,8 @@ const TentangSec1 = () => {
               Latar Belakang <span className="text-greenSecondary">Ecotection</span>
             </h3>
             <p className="2xl:text-body lg:text-[18px] text-normal font-medium ">
-              Ecotection adalah platform online yang menghubungkan masyarakat dengan alam. Kami menyediakan platform bagi masyarakat untuk melaporkan kerusakan alam dan mendukung upaya pelestarian alam.
+              Ecotection didirikan pada tahun 2024 oleh sekelompok individu yang peduli dengan alam Indonesia. Motivasi tersebut muncul dari keprihatinan terhadap tingginya tingkat kerusakan lingkungan serta keinginan untuk mengupayakan
+              perbaikan demi masa depan yang lebih baik. Kami percaya bahwa melalui pemanfaatan teknologi dan keterlibatan aktif komunitas dapat memberikan kontribusi yang signifikan dalam menjaga kelestarian alam.
             </p>
           </div>
           <img src={BerandaSecOneImg} alt="sec1_pic" className="mt-2 2xl:w-[450px] lg:w-[400px] md:w-full lg:h-[340px] h-auto object-cover rounded-3xl" />{" "}
