@@ -20,9 +20,10 @@ app.use(express.json());
 
 // cors policy (tambahkan domain yang ingin di beri akses)
 const corsOption = {
-  origin: ["https://ecotection.netlify.app/", "http://localhost:5173", "http://localhost:3000", "http://localhost:4000"],
+  origin: ["https://ecotection.netlify.app", "https://ecotection.netlify.app/", "http://localhost:5173", "http://localhost:3000", "http://localhost:4000"],
   credentials: true,
 };
+
 app.use(cors(corsOption));
 app.use(cookieParser());
 
