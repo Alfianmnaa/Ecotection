@@ -16,11 +16,11 @@ const Footer = () => {
             <p className="font-extrabold text-white my-3">CONTACT US</p>
             <div className="flex items-center gap-4 text-[#9C9C9C] font-semibold mb-3">
               <FaPhoneAlt className="text-2xl" />
-              <span>+62-21-555-1212</span>
+              <span>+6281326022762</span>
             </div>
             <div className="flex items-center gap-3 text-[#9C9C9C] font-semibold">
               <IoMdMail className="text-3xl" />
-              <span>contact@ecotection.com</span>
+              <span>alfianmna@gmail.com</span>
             </div>
           </div>
           <div>

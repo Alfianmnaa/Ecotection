@@ -46,7 +46,7 @@ const MainEdit = () => {
         tanggalLahir,
         jenisKelamin,
       };
-      await axiosInstance.put(`/user/${id}`, updateProfil);
+      await axiosInstance.put(`/user/update/${id}`, updateProfil);
       // Update user context setelah berhasil
       setUser((prevUser) => ({ ...prevUser, ...updateProfil }));
       await Swal.fire("Tersimpan!", "Informasi Berhasil Diperbarui", "success");

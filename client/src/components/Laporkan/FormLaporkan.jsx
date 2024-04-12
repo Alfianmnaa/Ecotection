@@ -70,6 +70,9 @@ const FormLaporkan = () => {
         AlamatDetail: alamatDetail,
       };
       await axiosInstance.post("/aksi/laporkan", newLaporan);
+      await axiosInstance.put(`/user/update/${user?._id}`, {
+        jumlahLaporan: dataUser.jumlahLaporan + 1,
+      });
       Swal.fire("Terimakasih Sahabat Bumi!", "Laporan anda sangat bermanfaat untuk Indonesia", "success").then(() => {
         // Setelah SweetAlert ditampilkan, kosongkan data
         window.location.reload();

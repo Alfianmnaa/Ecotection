@@ -13,7 +13,7 @@ import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const DetilKiri = () => {
-  const { user } = useContext(UserContext);
+  const { user, dataUserLogin } = useContext(UserContext);
   const [statusLaporan, setStatusLaporan] = useState([]);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -208,6 +208,7 @@ const DetilKiri = () => {
         WaktuStatusKetiga: waktuStatusKetiga,
       };
       await axiosInstance.post("/status/buat", statusBaru);
+      await axiosInstance.put(`/aksi/laporan/${path}`, { StatusSekarang: "Diverifikasi" });
       Swal.fire("Terimakasih Penyelamat Bumi!", "Jaga Indonesia untuk Kita Bersama!", "success").then(() => {
         // Setelah SweetAlert ditampilkan, kosongkan data
         window.location.reload();
@@ -220,21 +221,14 @@ const DetilKiri = () => {
   const handleUpdateStatus = async () => {
     try {
       const updatedStatus = {
-        PemProv: user.username,
-        StatusPertama: statusLaporan?.StatusPertama,
-        DeskripsiPertama: statusLaporan?.DeskripsiPertama,
-        WaktuStatusPertama: waktuStatusPertama,
-        StatusKedua: "DiProses",
+        StatusKedua: "Diproses",
         DeskripsiKedua: deskripsiKedua,
-        WaktuStatusKedua: waktuStatusKedua,
-        StatusKetiga: statusKetiga,
-        DeskripsiKetiga: deskripsiKetiga,
-        WaktuStatusKetiga: waktuStatusKetiga,
+        WaktuStatusKedua: new Date().toISOString(),
       };
 
       // Make a PUT request to update the status
       await axiosInstance.put(`/status/update/${path}`, updatedStatus);
-
+      await axiosInstance.put(`/aksi/laporan/${path}`, { StatusSekarang: "Diproses" });
       // Show success message to the user
       Swal.fire("Status Behasil diubah!", "Terimakasih telah menyelamatkan bumi!.", "success").then(() => {
         window.location.reload();
@@ -248,21 +242,14 @@ const DetilKiri = () => {
   const handleUpdateStatusNext = async () => {
     try {
       const updatedStatus = {
-        PemProv: user.username,
-        StatusPertama: statusLaporan?.StatusPertama,
-        DeskripsiPertama: statusLaporan?.DeskripsiPertama,
-        WaktuStatusPertama: waktuStatusPertama,
-        StatusKedua: statusLaporan?.StatusKedua,
-        DeskripsiKedua: statusLaporan?.DeskripsiKedua,
-        WaktuStatusKedua: waktuStatusKedua,
         StatusKetiga: "Selesai",
         DeskripsiKetiga: deskripsiKetiga,
-        WaktuStatusKetiga: waktuStatusKetiga,
+        WaktuStatusKetiga: new Date().toISOString(),
       };
 
       // Make a PUT request to update the status
       await axiosInstance.put(`/status/update/${path}`, updatedStatus);
-
+      await axiosInstance.put(`/aksi/laporan/${path}`, { StatusSekarang: "Selesai" });
       // Show success message to the user
       Swal.fire("Status Behasil diubah!", "Terimakasih telah menyelamatkan bumi!.", "success").then(() => {
         window.location.reload();
@@ -285,7 +272,20 @@ const DetilKiri = () => {
               <img src={userData?.fotoPengguna || profImg} alt="profpic" className="2xl:w-14 2xl:h-14 md:w-12 md:h-12 w-10 h-10 rounded-full object-cover" />
               <p className="lg:text-[18px] text-[12px]">{data?.JenisLaporan == "Public" ? <b>{data?.Pemilik}</b> : <b>Anonymous</b>}</p>
             </div>
-            {data.StatusSekarang && (
+            {data?.StatusSekarang == "Diverifikasi" && (
+              <div className="flex gap-4">
+                <span className="border-[1px] border-[#0084FF]  rounded-[40px] py-2 px-4 text-smallText text-[#0084FF] bg-[#E5F2FF] font-medium">Diverifikasi</span>
+                <img src={titikTiga} alt="titikTiga" />
+              </div>
+            )}
+
+            {data?.StatusSekarang == "Diproses" && (
+              <div className="flex gap-4">
+                <span className="border-[1px] border-[#C9AE17]  rounded-[40px] py-2 px-4 text-smallText text-[#C9AE17] bg-[#FFF8D1] font-medium">Diproses</span>
+                <img src={titikTiga} alt="titikTiga" />
+              </div>
+            )}
+            {data?.StatusSekarang == "Selesai" && (
               <div className="flex gap-4">
                 <span className="border-[1px] border-[#53A88C]  rounded-[40px] py-2 px-4 text-smallText text-[#53A88C] bg-[#E2FFF5] font-medium">Selesai</span>
                 <img src={titikTiga} alt="titikTiga" />
@@ -386,7 +386,7 @@ const DetilKiri = () => {
                 ></textarea>
               ) : (
                 <>
-                  {statusLaporan?.StatusPertama !== " " && (
+                  {statusLaporan?.StatusPertama !== " " && statusLaporan?.StatusKedua == " " && (
                     <textarea
                       className="w-full focus:outline-none border-[1px] border-inputBorder p-2 my-4"
                       name="proses"
@@ -397,7 +397,7 @@ const DetilKiri = () => {
                       onChange={(e) => setDeskripsiKedua(e.target.value)}
                     ></textarea>
                   )}
-                  {statusLaporan?.StatusKedua !== " " && (
+                  {statusLaporan?.StatusKedua !== " " && statusLaporan?.StatusKetiga == " " && (
                     <textarea
                       className="w-full focus:outline-none border-[1px] border-inputBorder p-2 my-4"
                       name="selesai"
@@ -410,18 +410,19 @@ const DetilKiri = () => {
                   )}
                 </>
               )}
+
               {statusLaporan === null ? (
                 <button onClick={handleBuatStatus} className="text-white bg-greenMain px-3 py-2 rounded-md mr-2">
                   Submit Verifikasi
                 </button>
               ) : (
                 <>
-                  {statusLaporan?.StatusPertama !== " " && (
+                  {statusLaporan?.StatusPertama !== " " && statusLaporan?.StatusKedua == " " && (
                     <button onClick={handleUpdateStatus} className="text-white bg-greenMain px-3 py-2 rounded-md mr-2">
                       Submit Proses
                     </button>
                   )}
-                  {statusLaporan?.StatusKedua !== " " && (
+                  {statusLaporan?.StatusKedua !== " " && statusLaporan?.StatusKetiga == " " && (
                     <button onClick={handleUpdateStatusNext} className="text-white bg-greenMain px-3 py-2 rounded-md mr-2">
                       Selesaikan
                     </button>
@@ -434,18 +435,18 @@ const DetilKiri = () => {
             </>
           ) : (
             <>
-              {statusLaporan === null ? (
+              {data?.Provinsi == user?.username && statusLaporan === null ? (
                 <button className="mt-4 px-3 py-2 rounded-md text-white bg-[#0084FF]" onClick={() => setVerifikasi(true)}>
                   Verifikasi Laporan
                 </button>
               ) : (
                 <>
-                  {statusLaporan?.StatusPertama !== " " && (
-                    <button className="mt-4 px-3 py-2 rounded-md text-white bg-[#C9AE17]" onClick={() => setVerifikasi(true)}>
+                  {statusLaporan?.StatusPertama !== " " && statusLaporan?.StatusKedua == " " && (
+                    <button className="mt-4 px-3 py-2 rounded-md text-white bg-[#C9AE17] mr-2" onClick={() => setVerifikasi(true)}>
                       Proses Laporan
                     </button>
                   )}
-                  {statusLaporan?.StatusKedua !== " " && (
+                  {statusLaporan?.StatusKedua !== " " && statusLaporan?.StatusKetiga == " " && (
                     <button className="mt-4 px-3 py-2 rounded-md text-white bg-[#53A88C]" onClick={() => setVerifikasi(true)}>
                       Selesaikan Laporan
                     </button>

@@ -89,7 +89,7 @@ const SelectFormLaporkan = ({ onSelectData }) => {
         </label>
         <div className="relative">
           <div className="w-full flex items-center justify-between border border-gray-300 rounded-md px-4 py-3 text-gray-500 shadow-sm focus:outline-none" onClick={() => setIsOpenProvinsi(!isOpenProvinsi)}>
-            {provinsiDipilih || "Pilih Kategori Laporan"}
+            {provinsiDipilih || "Pilih Provinsi"}
             <img src={arrowDown} alt="arrowDown" className="ml-2" />
           </div>
           {isOpenProvinsi && (

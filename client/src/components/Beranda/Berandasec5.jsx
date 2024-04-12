@@ -1,5 +1,5 @@
 import React from "react";
-import BerandaSecOneImg from "../../assets/Beranda/BerandaSec1.png";
+import LawanImg from "../../assets/Beranda/lawan.png";
 import ArrowSec5 from "../../assets/Beranda/icon/ArrowSec5.svg";
 import { Link } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const Berandasec5 = () => {
               </button>
             </Link>
           </div>
-          <img src={BerandaSecOneImg} alt="sec5_pic" className="max-w-full h-auto object-cover" />{" "}
+          <img src={LawanImg} alt="sec5_pic" className="max-w-full h-auto object-cover lg:rounded-3xl rounded-2xl" />{" "}
         </div>
       </div>
     </section>

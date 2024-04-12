@@ -4,7 +4,7 @@ import HeroStatsImg from "../../assets/Statistik/HeroStats.png";
 const HeroStats = () => {
   return (
     <main>
-      <div className="xl:px-36 lg:px-32 md:px-32 sm:px-10 px-10 lg:py-40 md:py-15 sm:py-10 py-10">
+      <div className="xl:px-36 lg:px-32 md:px-32 sm:px-10 px-10 lg:py-40 py-28">
         <div className="flex flex-wrap items-center justify-around">
           <img src={HeroStatsImg} alt="statsImg" className="object-cover 2xl:max-w-[360px] w-[320px]" />
           <div className="2xl:max-w-[580px] max-w-[460px]">

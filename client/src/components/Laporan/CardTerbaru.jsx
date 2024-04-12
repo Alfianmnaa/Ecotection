@@ -16,7 +16,7 @@ const CardTerbaru = () => {
   const [pageCount, setPageCount] = useState();
   const [totalLaporan, setTotalLaporan] = useState();
   const [dataUser, setDataUser] = useState([]);
-  const limit = 1;
+  const limit = 6;
 
   useEffect(() => {
     fetchLaporan();

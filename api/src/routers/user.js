@@ -9,7 +9,7 @@ router.get("/:id", userController.getUser);
 router.get("/", userController.getSemuaUser);
 
 // UPDATE USER
-router.put("/:id", userController.updateUser);
+router.put("/update/:id", userController.updateUser);
 
 // DELETE
 router.delete("/:id", userController.deleteUser);

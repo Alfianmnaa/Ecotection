@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { axiosInstance } from "../../config";
 import { UserContext } from "../../context/UserContext";
 
-const CardLaporanSaya = ({ itemData, fetchAgain }) => {
+const CardLaporanSaya = ({ filter, itemData, fetchAgain }) => {
   const { user } = useContext(UserContext);
   const [data, setData] = useState([]);
   // const [isUpvoted, setIsUpvoted] = useState(false);
@@ -83,9 +83,22 @@ const CardLaporanSaya = ({ itemData, fetchAgain }) => {
                 </p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <span className="border-[1px] border-[#53A88C]  rounded-[40px] py-2 px-4 text-smallText text-[#53A88C] bg-[#E2FFF5] font-medium">Selesai</span>
-            </div>
+            {itemData?.StatusSekarang == "Diverifikasi" && (
+              <div className="flex">
+                <span className="border-[1px] border-[#0084FF]  rounded-[40px] py-2 px-4 text-smallText text-[#0084FF] bg-[#E5F2FF] font-medium">Diverifikasi</span>
+              </div>
+            )}
+
+            {itemData?.StatusSekarang == "Diproses" && (
+              <div className="flex">
+                <span className="border-[1px] border-[#C9AE17]  rounded-[40px] py-2 px-4 text-smallText text-[#C9AE17] bg-[#FFF8D1] font-medium">Diproses</span>
+              </div>
+            )}
+            {itemData?.StatusSekarang == "Selesai" && (
+              <div className="flex">
+                <span className="border-[1px] border-[#53A88C]  rounded-[40px] py-2 px-4 text-smallText text-[#53A88C] bg-[#E2FFF5] font-medium">Selesai</span>
+              </div>
+            )}
           </div>
 
           <p className="lg:text-smallText text-[12px] text-[#222] font-medium overflow-hidden 2xl:line-clamp-4 md:line-clamp-3 line-clamp-2 my-2">{itemData.DeskripsiLaporan}</p>

@@ -1,4 +1,4 @@
-import { React, useEffect, useRef } from "react";
+import { React, useContext, useEffect, useRef } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Beranda from "./pages/Beranda";
 import Laporkan from "./pages/Laporkan";
@@ -36,7 +36,6 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
   return (
     <>
       <UserContextProvider>

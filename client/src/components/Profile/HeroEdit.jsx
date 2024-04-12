@@ -3,19 +3,29 @@ import fotoProfile from "../../assets/Navbar/kosong.jpeg";
 import heroLaporanMasyarakat from "../../assets/Pengaturan/sahabat_bumi.png";
 import editIcon from "../../assets/Pengaturan/edit.svg";
 import keyIcon from "../../assets/Pengaturan/key.svg";
-// import { UserContext } from "../../context/UserContext";
-// import { axiosInstance } from "../../config";
+import { UserContext } from "../../context/UserContext";
+import { axiosInstance } from "../../config";
 
 const HeroEdit = () => {
-  // const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const [handleMenu, setHandleMenu] = useState("");
+  const [dataUser, setDataUser] = useState("");
+
+  useEffect(() => {
+    fetchUser();
+  }, [user]);
+
+  const fetchUser = async () => {
+    try {
+      const res = await axiosInstance.get(`/user/${user._id}`);
+      setDataUser(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const styleMenuProfil = `flex items-center cursor-pointer ${handleMenu == "" ? "text-greenSecondary border-b-2 border-greenSecondary" : "text-black"}`;
   const styleMenuPassword = `flex items-center cursor-pointer ${handleMenu == "Ubah Password" ? "text-greenSecondary border-b-2 border-greenSecondary" : "text-black"}`;
-
-  //   useEffect(()=>{
-  // fetchUser()
-  //   },[user])
 
   return (
     <section>
@@ -29,9 +39,9 @@ const HeroEdit = () => {
       <div className="xl:px-36 lg:px-32 md:px-32 sm:px-10 px-4">
         <div className=" flex items-center justify-between sm:translate-y-[-120px] translate-y-[-100px]">
           <div>
-            <img src={fotoProfile} alt="fotoProfile" className="sm:mb-8 mb-4 sm:w-40 sm:h-40 w-32 h-32 rounded-full border-2 border-white" />
-            <p className="sm:text-[32px] text-subheadline font-extrabold">Edi Susanto</p>
-            <p className="sm:text-subheadline text-normal  font-medium">235 laporan</p>
+            <img src={dataUser.fotoPengguna || fotoProfile} alt="fotoProfile" className="sm:mb-8 mb-4 sm:w-40 sm:h-40 w-32 h-32 rounded-full border-2 border-white" />
+            <p className="sm:text-[32px] text-subheadline font-extrabold">{dataUser.username}</p>
+            <p className="sm:text-subheadline text-normal  font-medium">{dataUser.jumlahLaporan || 0} laporan</p>
           </div>
           <button className="flex item-center justify-center gap-1 border-[1px] border-black sm:py-3 sm:px-4 py-2 px-3 rounded-[50px] mt-20 ">
             <img src={editIcon} alt="editIcon" className="w-6" />

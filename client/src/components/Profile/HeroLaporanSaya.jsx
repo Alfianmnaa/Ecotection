@@ -44,7 +44,7 @@ const HeroLaporanSaya = () => {
             <div>
               <img src={dataUser.fotoPengguna ? dataUser.fotoPengguna : fotoProfile} alt="fotoProfile" className="sm:mb-8 mb-4 sm:w-40 sm:h-40 w-32 h-32 rounded-full border-2 border-white object-cover" />
               <p className="sm:text-[32px] text-subheadline font-extrabold">{dataUser.username}</p>
-              <p className="sm:text-subheadline text-normal  font-medium">235 laporan</p>
+              <p className="sm:text-subheadline text-normal  font-medium">{user.jumlahLaporan || 0} laporan</p>
             </div>
             <Link to="/edit-profil">
               <button className="flex item-center justify-center gap-1 border-[1px] border-black sm:py-3 sm:px-4 py-2 px-3 rounded-[50px] mt-20 ">
