@@ -163,7 +163,7 @@ const CardKategori = ({ selectedCategory }) => {
                         onClick={() => (isUpvoted ? handleDownvote(laporan._id) : handleUpvote(laporan._id))}
                       >
                         <img src={arrowUpIcon} alt="arrowUp" className="w-5" />
-                        <span className="text-[#636466] text-[12px]">Upvote · {laporan.UpVote.length}</span>
+                        <span className="text-[#636466] text-[12px]">Dukung · {laporan.UpVote.length}</span>
                       </div>
                       <div className="cursor-pointer flex gap-4 items-center text-body text-[#5B5B5B]">
                         <img src={shareIcon} alt="shareicon" onClick={() => handleShare(laporan._id)} />

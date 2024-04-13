@@ -27,7 +27,7 @@ const CardTerpopuler = () => {
       // Mengurutkan data berdasarkan jumlah UpVote dari yang tertinggi ke terendah
       const sortedData = res.data.sort((a, b) => b.UpVote.length - a.UpVote.length);
       // Mengambil 9 laporan pertama dari data yang telah diurutkan
-      const slicedData = sortedData.slice(0, 9);
+      const slicedData = sortedData.slice(0, 6);
       setLoading(false);
       setSemuaData(slicedData);
       // Mengambil data user untuk setiap laporan
@@ -160,7 +160,7 @@ const CardTerpopuler = () => {
                         onClick={() => (isUpvoted ? handleDownvote(laporan._id) : handleUpvote(laporan._id))}
                       >
                         <img src={arrowUpIcon} alt="arrowUp" className="w-5" />
-                        <span className="text-[#636466] text-[12px]">Upvote · {laporan.UpVote.length}</span>
+                        <span className="text-[#636466] text-[12px]">Dukung · {laporan.UpVote.length}</span>
                       </div>
                       <div className="cursor-pointer flex gap-4 items-center text-body ">
                         <img src={shareIcon} alt="shareicon" onClick={() => handleShare(laporan._id)} className="text-[#5B5B5B]" />

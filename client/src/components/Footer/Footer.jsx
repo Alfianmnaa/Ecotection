@@ -6,6 +6,7 @@ import XLogo from "../../assets/Footer/XLogo.svg";
 import YtbLogo from "../../assets/Footer/YtbLogo.svg";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,29 +19,44 @@ const Footer = () => {
               <FaPhoneAlt className="text-2xl" />
               <span>+6281326022762</span>
             </div>
-            <div className="flex items-center gap-3 text-[#9C9C9C] font-semibold">
-              <IoMdMail className="text-3xl" />
-              <span>alfianmna@gmail.com</span>
-            </div>
+            <a href="mailto:alfianmna@gmail.com" target="blank">
+              <div className="flex items-center gap-3 text-[#9C9C9C] font-semibold">
+                <IoMdMail className="text-3xl" />
+                <span>alfianmna@gmail.com</span>
+              </div>
+            </a>
           </div>
           <div>
             <p className="font-extrabold text-white my-3">ECOTECTION</p>
-            <div className="text-[#9C9C9C] font-semibold">
-              <p className="mb-3">Beranda</p>
-              <p className="mb-3">Laporkan</p>
-              <p className="mb-3">Laporan</p>
-              <p className="mb-3">Statistik</p>
-              <p className="mb-3">Tentang Kami</p>
+
+            <div className="text-[#9C9C9C] font-semibold cursor-pointer">
+              <Link to="/">
+                <p className="mb-3">Beranda</p>
+              </Link>
+              <Link to="/laporkan">
+                <p className="mb-3">Laporkan</p>
+              </Link>
+              <Link to="/laporan">
+                <p className="mb-3">Laporan</p>
+              </Link>
+              <Link to="/statistik">
+                <p className="mb-3">Statistik</p>
+              </Link>
+              <Link to="/tentang">
+                <p className="mb-3">Tentang Kami</p>
+              </Link>
             </div>
           </div>
           <div>
             <p className="font-extrabold text-white my-3">SOSIAL MEDIA</p>
-            <div className="flex gap-4">
-              <img src={FBLogo} alt="FBLogo" />
-              <img src={IGLogo} alt="IGLogo" />
-              <img src={XLogo} alt="XLogo" />
-              <img src={YtbLogo} alt="YtbLogo" />
-            </div>
+            <Link to="https://www.instagram.com/alfianmnaa/" target="_blank">
+              <div className="flex gap-4">
+                <img src={FBLogo} alt="FBLogo" />
+                <img src={IGLogo} alt="IGLogo" />
+                <img src={XLogo} alt="XLogo" />
+                <img src={YtbLogo} alt="YtbLogo" />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

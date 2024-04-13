@@ -58,11 +58,11 @@ const Masuk = () => {
                   required
                   type={isClosed ? "password" : "text"}
                   id="password"
-                  placeholder="your password!"
+                  placeholder="Masukkan Password!"
                   className="border mt-2 rounded-md border-[#222] w-full py-3 px-4 text-tprimary outline-none"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="eye-icon absolute top-4 right-0 h-full flex items-center pr-4" onClick={toggleEye}>
+                <div className="eye-icon absolute top-4 right-0 h-full flex items-center pr-4 cursor-pointer" onClick={toggleEye}>
                   {isClosed ? <img src={mataTutup} alt="mataTutup" className="w-5 " /> : <img src={mataBuka} alt="mataTerbuka" className="w-5 " />}
                 </div>
               </div>
@@ -75,7 +75,7 @@ const Masuk = () => {
                   Daftar Sekarang
                 </Link>
               </p>
-              {error && <p className="wrong-input mt-4 text-center text-red-500">Wrong email or password!</p>}
+              {error && <p className="wrong-input mt-4 text-center text-red-500">Email atau Password Salah!</p>}
             </form>
           </div>
         </div>

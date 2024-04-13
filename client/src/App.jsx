@@ -14,6 +14,9 @@ import { UserContextProvider } from "./context/UserContext";
 import DetilLaporan from "./pages/DetilLaporan";
 import ProfileEdit from "./pages/ProfileEdit";
 import ProfileLaporan from "./pages/ProfileLaporan";
+import SemuaTerpopuler from "./components/LihatSemua/SemuaTerpopuler";
+import SemuaTerbaru from "./components/LihatSemua/SemuaTerbaru";
+import SemuaKategori from "./components/LihatSemua/SemuaKategori";
 
 function App() {
   const scrollRef = useRef();
@@ -47,6 +50,9 @@ function App() {
               <Route path="/masuk" element={<Masuk />} />
               <Route path="/laporkan" element={<Laporkan />} />
               <Route path="/laporan" element={<Laporan />} />
+              <Route path="/laporan/terpopuler" element={<SemuaTerpopuler />} />
+              <Route path="/laporan/terbaru" element={<SemuaTerbaru />} />
+              <Route path="/laporan/kategori" element={<SemuaKategori />} />
               <Route path="/laporan/:id" element={<DetilLaporan />} />
               <Route path="/statistik" element={<Statistik />} />
               <Route path="/tentang" element={<TentangKami />} />
