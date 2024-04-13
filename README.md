@@ -2,6 +2,18 @@
 
 **Demo:** [Ecotection Demo](https://ecotection.netlify.app/)
 
+**Dokumentasi:** [Ecotection Dokumentasi](https://drive.google.com/file/d/1a058n-naK82MaHUlLf5HpDSDSob_toyF/view?usp=sharing)
+
+**Panduan Masuk Ecotection:**
+1. User atau Masyarakat bisa Register dan login untuk masuk
+2. User dari Pemerintah bisa langsung login dengan akun:
+   
+Username: Daerah Istimewa Yogyakarta
+
+Password: DIYEcotectionPW
+
+**panduan Detail:** [Panduan Penggunaan](https://drive.google.com/drive/folders/1bbF0KtXO7C5UvgBWEQZnue85Xla_u2OC?usp=sharing )
+
 **Tampilan Ecotection:**
 ![Ecotection ](https://res.cloudinary.com/alfianmna/image/upload/v1712904075/Screenshot_2024-04-12_133906_rcajqm.png)
 Selamat datang di Ecotection, sebuah platform inovati yang menghubungkan masyarakat dengan alam. Kami menyediakan platform bagi masyarakat untuk melaporkan kerusakan alam dan mendukung upaya pelestarian alam.
@@ -24,13 +36,14 @@ Projek ini dibangun dengan menggunakan Arsitektur MERN (MongoDB, Express Js, Rea
 2. Clone repositori ini ke dalam komputer Anda.
 3. Buka terminal dan arahkan ke direktori projek.
 4. cd client , lalu npm install untuk menginstall depedencies
-5. npm run dev dan buka link localhost
-6. cd api , lalu npm install untuk menginstall depedencies
-7. Buka Mongo DB dan buat database baru dan gunakan mongo drivers untuk url connectnya
-8. lihat ke direktori api , buat file .env dan buat variabel MONGO_URL dan isikan mongo drivers URL yang telah dibuat dan buat variabel PORT isikan 4000 atau bebas
-9. npm run dev pada direktori api, kemdian server berhasil dijalankan
-10. Dengan adanya client dan server semua fitur dan tampilan akan terintegrasi dengan baik
-11. Ecotection sudah dapat digunakan
+5. Masuk Ke file Config dan ubah menjadi http://localhost:4000 atau bisa tetap menggunakan API yang sudah ecotection sediakan
+6. npm run dev dan buka link localhost dan tampilan akan terlihat dalam browser
+7. cd api , lalu npm install untuk menginstall depedencies
+8. Buka Mongo DB dan buat database baru dan gunakan mongo drivers untuk url connectnya
+9. lihat ke direktori api , buat file .env dan buat variabel MONGO_URL dan isikan mongo drivers URL yang telah dibuat dan buat variabel PORT isikan 4000 atau bebas
+10. npm run dev pada direktori api, kemdian server berhasil dijalankan
+11. Dengan adanya client dan server semua fitur dan tampilan akan terintegrasi dengan baik
+12. Ecotection sudah dapat digunakan
 
 ## Kontribusi
 
