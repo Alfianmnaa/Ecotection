@@ -351,7 +351,7 @@ const DetilKiri = () => {
               >
                 <img src={arrowUpIcon} alt="arrowUp" className="w-5" />
 
-                <span className="text-[#636466] text-[12px]">Upvote · {data.UpVote ? data.UpVote.length : 0}</span>
+                <span className="text-[#636466] text-[12px]">Dukung · {data.UpVote ? data.UpVote.length : 0}</span>
               </div>
             </div>
             <div className="cursor-pointer flex gap-4 items-center text-body text-[#5B5B5B]">
@@ -441,12 +441,12 @@ const DetilKiri = () => {
                 </button>
               ) : (
                 <>
-                  {statusLaporan?.StatusPertama !== " " && statusLaporan?.StatusKedua == " " && (
+                  {data?.Provinsi == user?.username && statusLaporan?.StatusPertama !== " " && statusLaporan?.StatusKedua == " " && (
                     <button className="mt-4 px-3 py-2 rounded-md text-white bg-[#C9AE17] mr-2" onClick={() => setVerifikasi(true)}>
                       Proses Laporan
                     </button>
                   )}
-                  {statusLaporan?.StatusKedua !== " " && statusLaporan?.StatusKetiga == " " && (
+                  {data?.Provinsi == user?.username && statusLaporan?.StatusKedua !== " " && statusLaporan?.StatusKetiga == " " && (
                     <button className="mt-4 px-3 py-2 rounded-md text-white bg-[#53A88C]" onClick={() => setVerifikasi(true)}>
                       Selesaikan Laporan
                     </button>

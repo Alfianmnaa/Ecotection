@@ -50,12 +50,7 @@ const StatsSec2 = () => {
             Statistik menyatakan bahwa jenis kerusakan dengan laporan aktivitas ilegal terbanyak adalah{" "}
             {topJenisLaporan.map((kerusakan, index) => (
               <span key={index}>
-                dengan jumlah laporan
-                <b>
-                  {" "}
-                  {kerusakan[0]} {kerusakan[1]}
-                </b>
-                {index !== topJenisLaporan.length - 1 && ", "}
+                <strong>{kerusakan[0]} </strong> dengan jumlah laporan <strong>{kerusakan[1]}</strong> {index !== topJenisLaporan.length - 1 && ", "}
               </span>
             ))}
           </p>
