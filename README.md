@@ -5,8 +5,8 @@
 **Dokumentasi:** [Ecotection Dokumentasi](https://drive.google.com/file/d/1a058n-naK82MaHUlLf5HpDSDSob_toyF/view?usp=sharing)
 
 **Panduan Masuk Ecotection:**
-1. User atau Masyarakat bisa Register dan login untuk masuk
-2. User dari Pemerintah bisa langsung login dengan akun:
+1. User Masyarakat bisa Register dan login untuk masuk
+2. User dari Pemerintah untuk testing bisa langsung login dengan akun tanpa perlu kontak kerjasama:
    
 Username: Daerah Istimewa Yogyakarta
 
@@ -40,7 +40,7 @@ Projek ini dibangun dengan menggunakan Arsitektur MERN (MongoDB, Express Js, Rea
 6. npm run dev dan buka link localhost dan tampilan akan terlihat dalam browser
 7. cd api , lalu npm install untuk menginstall depedencies
 8. Buka Mongo DB dan buat database baru dan gunakan mongo drivers untuk url connectnya
-9. lihat ke direktori api , buat file .env dan buat variabel MONGO_URL dan isikan mongo drivers URL yang telah dibuat dan buat variabel PORT isikan 4000 atau bebas
+9. lihat ke direktori api , buat file .env dan buat variabel MONGO_URL dan isikan mongo drivers URL yang telah dibuat dan buat variabel PORT isikan 4000 atau bebas. Lalu buat lagi bernama SECRET dan isikan bebas contoh SECRET=EcotectionJWTAccess
 10. npm run dev pada direktori api, kemdian server berhasil dijalankan
 11. Dengan adanya client dan server semua fitur dan tampilan akan terintegrasi dengan baik
 12. Ecotection sudah dapat digunakan
